@@ -5,6 +5,7 @@
 import bot from './assets/bot.svg';
 import user from './assets/user.svg';
 
+// const modules = import.meta.globEager('./components/*.js');
 const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
 
