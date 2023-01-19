@@ -7,7 +7,7 @@ SERVER SETUP
 * Now create a OpenAI account if not alreayd created and login to OpenAI
 * Now navigate here https://beta.openai.com/account/api-keys to generate an api-key if not alreay created. Keep it handy.
 * Now edit the .env file and add the following line 
-** OPENAI_API_KEY="Your api-key"
+  * OPENAI_API_KEY="Your api-key"
 * Save the file
 * Verify id node.js is installed in the system by "node -v", if it returs the version means node is installed else install node
   # Refer here for installtion: https://kinsta.com/blog/how-to-install-node-js/
