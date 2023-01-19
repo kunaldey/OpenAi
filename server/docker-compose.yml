@@ -3,7 +3,7 @@ version: "3.8"
 services:
   app:
     container_name: OpenAIServer
-    image: image_openAiServer
+    image: openaiserver
     build: 
       context: .
     ports:
