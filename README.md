@@ -43,5 +43,17 @@ SERVER SETUP
 * To deploy the container run the following
    * sudo docker compose up
 * Verify if the container is running fine by "sudo docker ps" command
-* Once the container is up get into the container by the following command
+* Once the container is up run the following commands
    * docker exec -u 0 -it <your container id> /bin/bash
+   * touch .env
+   * apt-get update
+   * apt-get install nano
+   * nano .env
+* Now add the following line in the .env file 
+  * OPENAI_API_KEY="Your api-key"
+  * press "ctrl + x"
+  * press "y"
+  * press "Enter"
+* Now restart the container by the command "docker restart my_container_id"
+* This should bring up the server, can be accessed by http://<your ip address>:5000
+
