@@ -35,3 +35,13 @@ CLIENT SETUP
 
 DOCKER DEPLOYMENT
 ===========================
+SERVER SETUP
+--------------------
+* Navigate to server folder by "cd OpenAI/server"
+* To create a docker container run the following command
+   * sudo docker build -t openaiserver .
+* To deploy the container run the following
+   * sudo docker compose up
+* Verify if the container is running fine by "sudo docker ps" command
+* Once the container is up get into the container by the following command
+   * docker exec -u 0 -it <your container id> /bin/bash
