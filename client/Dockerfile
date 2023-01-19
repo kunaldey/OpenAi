@@ -1,8 +1,14 @@
-FROM node
+FROM node:15.12.0
+
 WORKDIR /app
-COPY package.json .
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ADD . .
+
 RUN npm install
-COPY . .
-## EXPOSE [Port you mentioned in the vite.config file]
-EXPOSE 5173
+
+ENTRYPOINT ["/entrypoint.sh"]
+
 CMD ["npm", "run", "dev"]
