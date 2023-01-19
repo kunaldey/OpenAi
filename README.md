@@ -15,17 +15,17 @@ SERVER SETUP
     * sudo apt update
     * sudo apt-get install -y nodejs
     * sudo npm install -g npm
-Once node is installed, now run the command "npm install" to download all the dependent modules
-Now execute "npm run server"
-This should run the server on http://localhost:5000
-Copy the url and run it on a browser, if everything is find the following message should be displayed
-  {"message":"Code AI is running fine..."}
+* Once node is installed, now run the command "npm install" to download all the dependent modules
+* Now execute "npm run server"
+* This should run the server on http://localhost:5000
+* Copy the url and run it on a browser, if everything is find the following message should be displayed
+  * {"message":"Code AI is running fine..."}
 
 CLIENT SETUP
 ===========================
-Navigate to client folder by "cd OpenAI/client"
-Follow the node installtion steps from Server Installtion section, if it's not installed already
-Once node is installed, now run the command "npm install" to download all the dependent modules
-Now execute "npm run dev"
-This should run the server on http://localhost:5173
-Copy the url and run it on a browser, if everything is find the chat dashboard will appear
+* Navigate to client folder by "cd OpenAI/client"
+* Follow the node installtion steps from Server Installtion section, if it's not installed already
+* Once node is installed, now run the command "npm install" to download all the dependent modules
+* Now execute "npm run dev"
+* This should run the server on http://localhost:5173
+* Copy the url and run it on a browser, if everything is find the chat dashboard will appear
