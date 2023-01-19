@@ -4,7 +4,7 @@ services:
   dev:
     build: 
       context: ./
-      dockerfile: openaiclient
+      dockerfile: Dockerfile
     volumes:
       - ./:/app
     ports:
