@@ -32,3 +32,6 @@ CLIENT SETUP
 * Now execute "npm run dev"
 * This should run the server on http://localhost:5173
 * Copy the url and run it on a browser, if everything is find the chat dashboard will appear
+
+DOCKER DEPLOYMENT
+===========================
