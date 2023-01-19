@@ -1,7 +1,10 @@
 Clone the Repo by "git clone https://github.com/kunaldey/OpenAi.git"
 
-SERVER SETUP
+STAND ALONE DEPLOYMENT
 ===========================
+
+SERVER SETUP
+--------------------
 * Navigate to server folder by "cd OpenAI/server"
 * Create a file called ".env"
 * Now create a OpenAI account if not alreayd created and login to OpenAI
@@ -22,7 +25,7 @@ SERVER SETUP
   * {"message":"Code AI is running fine..."}
 
 CLIENT SETUP
-===========================
+--------------------
 * Navigate to client folder by "cd OpenAI/client"
 * Follow the node installtion steps from Server Installtion section, if it's not installed already
 * Once node is installed, now run the command "npm install" to download all the dependent modules
