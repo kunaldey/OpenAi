@@ -10,11 +10,11 @@ SERVER SETUP
   * OPENAI_API_KEY="Your api-key"
 * Save the file
 * Verify id node.js is installed in the system by "node -v", if it returs the version means node is installed else install node
-  # Refer here for installtion: https://kinsta.com/blog/how-to-install-node-js/
-  # For linux installtion follow the commands below
-    sudo apt update
-    sudo apt-get install -y nodejs
-    sudo npm install -g npm
+  * Refer here for installtion: https://kinsta.com/blog/how-to-install-node-js/
+  * For linux installtion follow the commands below
+    * sudo apt update
+    * sudo apt-get install -y nodejs
+    * sudo npm install -g npm
 Once node is installed, now run the command "npm install" to download all the dependent modules
 Now execute "npm run server"
 This should run the server on http://localhost:5000
