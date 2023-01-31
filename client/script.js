@@ -66,8 +66,10 @@ const handleSubmit = async (e) => {
 
   const data = new FormData(form);
 
+  const qery = data.get('prompt')+' '+data.get('prompt2')+' '+data.get('prompt3');
+
   //User's chat stripe
-  chatContainer.innerHTML += chatStripe(false, data.get('prompt'));
+  chatContainer.innerHTML += chatStripe(false, qery);
 
   form.reset();
 
