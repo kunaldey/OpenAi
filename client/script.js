@@ -66,7 +66,7 @@ const handleSubmit = async (e) => {
 
   const data = new FormData(form);
 
-  const qery = data.get('prompt')+' '+data.get('prompt2')+' '+data.get('prompt3');
+  const qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2')+' Expected Result: '+data.get('prompt3');
 
   //User's chat stripe
   chatContainer.innerHTML += chatStripe(false, qery);
@@ -90,7 +90,8 @@ const handleSubmit = async (e) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      prompt: data.get('prompt')
+      // prompt: data.get('prompt')
+      prompt: qery
     })
   })
 
