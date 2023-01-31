@@ -90,3 +90,25 @@
 .message::-webkit-scrollbar {
   display: none;
 }
+
+.dark-mode {
+  background-color: #292b2e;
+  color: white;
+}
+
+button {
+  outline: 0;
+  border: 0;
+  cursor: pointer;
+  background: transparent;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  color: white;
+  text-align: center;
+}
