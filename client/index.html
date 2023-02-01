@@ -26,22 +26,33 @@
 
         <div id = "digital-clock"> </div>
       </div>     
-      
+
       <div class="container" max-width="160px" style="padding-bottom: 40px;">
+        <div>
+          <button type="button" id="btnSingle" onclick="showSingleTcField()"><img src="assets/single.png"/> Single TC Generator</button>
+          <button type="button" id="btnMulti" onclick="showMultiTcField()"><img src="assets/multiple.png"/> Multi TC Generator</button>
+        </div>
+        <div>&nbsp;</div>
         <div class="form-group">
-          <label for="exampleFormControlInput1">Acceptance Criteria</label>
-          <input name="prompt" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Acceptance Criteria" required>
+          <label for="exampleFormControlInput1" id="lblAccCrit">Acceptance Criteria</label>
+          <input name="prompt" type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Acceptance Criteria">
         </div>
         
          <div class="form-group">
-          <label for="exampleFormControlInput2">Test Fields</label>
+          <label for="exampleFormControlInput2" id="lblTestFields">Test Fields</label>
           <input name="prompt2" type="text" class="form-control" id="exampleFormControlInput2" placeholder="Enter Test Fields">
         </div>
         
          <div class="form-group">
-          <label for="exampleFormControlInput3">Expected Result</label>
+          <label for="exampleFormControlInput3" id="lblExptRslt">Expected Result</label>
           <input name="prompt3" type="text" class="form-control" id="exampleFormControlInput3" placeholder="Enter Expected Result">
         </div>
+
+        <div class="form-group">
+          <label for="exampleFormControlInput3" id="lblMultiTC">Enter Test Scenario</label>
+          <input name="multiPromt" type="text" class="form-control" id="txtMultiTCGen" placeholder="Define Scenario">
+        </div>
+        <div>&nbsp;</div>
         <div class="form-group">
          <button type="submit" class="btn btn-success">Generate</button>
         </div>    
@@ -105,6 +116,60 @@
             window.location.href=window.location.href;
           }
         }
+      </script>
+      <script>
+          function showMultiTcField(){
+
+            //Displaying multiple test case scenario text box
+            var txtMultiScenario = document.getElementById('txtMultiTCGen');
+            var lblMultiScenario = document.getElementById('lblMultiTC');
+            txtMultiScenario.style.display = "block";
+            lblMultiScenario.style.display = "block";
+
+            //Hiding single test case scenario text boxes
+            var exampleFormControlInput1 = document.getElementById('exampleFormControlInput1');
+            var exampleFormControlInput2 = document.getElementById('exampleFormControlInput2');
+            var exampleFormControlInput3 = document.getElementById('exampleFormControlInput3');
+            var lblAccCrit = document.getElementById('lblAccCrit');
+            var lblTestFields = document.getElementById('lblTestFields');
+            var lblExptRslt = document.getElementById('lblExptRslt');
+            exampleFormControlInput1.style.display = "none";
+            exampleFormControlInput2.style.display = "none";
+            exampleFormControlInput3.style.display = "none";
+            lblAccCrit.style.display = "none";
+            lblTestFields.style.display = "none";
+            lblExptRslt.style.display = "none";
+
+            const chatContainer = document.querySelector('#chat_container');
+            // chatContainer.style.display = "none";
+
+          }
+          function showSingleTcField(){
+
+            //Displaying single test case scenario text boxes
+            var exampleFormControlInput1 = document.getElementById('exampleFormControlInput1');
+            var exampleFormControlInput2 = document.getElementById('exampleFormControlInput2');
+            var exampleFormControlInput3 = document.getElementById('exampleFormControlInput3');
+            var lblAccCrit = document.getElementById('lblAccCrit');
+            var lblTestFields = document.getElementById('lblTestFields');
+            var lblExptRslt = document.getElementById('lblExptRslt');
+            exampleFormControlInput1.style.display = "block";
+            exampleFormControlInput2.style.display = "block";
+            exampleFormControlInput3.style.display = "block";
+            lblAccCrit.style.display = "block";
+            lblTestFields.style.display = "block";
+            lblExptRslt.style.display = "block";
+
+            //Hiding multiple test case scenario text box
+            var txtMultiScenario = document.getElementById('txtMultiTCGen');
+            var lblMultiScenario = document.getElementById('lblMultiTC');
+            txtMultiScenario.style.display = "none";
+            lblMultiScenario.style.display = "none";
+
+            const chatContainer = document.querySelector('#chat_container');
+            // chatContainer.style.display = "none";
+
+          }
       </script>
   </body>
 </html>

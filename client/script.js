@@ -8,7 +8,8 @@ import user from './assets/user.svg';
 // const modules = import.meta.globEager('./components/*.js');
 const form = document.querySelector('form');
 const chatContainer = document.querySelector('#chat_container');
-
+const tempData = "";
+document.getElementById("btnSingle").click();
 let loadInterval;
 
 function loader(element){
@@ -82,25 +83,46 @@ function chatStripe (isAi, value, uniqueId){
 }
 
 const handleSubmit = async (e) => {
+  // chatContainer.style.display = "block";
   e.preventDefault();
 
   const data = new FormData(form);
   let qery = "";
-  if(data.get('prompt2') !== "" && data.get('prompt3') !== ""){
-    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2')+' Expected Result: '+data.get('prompt3');
-  }
 
-  if(data.get('prompt2') == "" && data.get('prompt3') == ""){
-    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt');
-  }
+  var txtMultiTCGen = document.getElementById('txtMultiTCGen');
+  // var exampleFormControlInput1 = document.getElementById('exampleFormControlInput1');
+  // var exampleFormControlInput2 = document.getElementById('exampleFormControlInput2');
+  // var exampleFormControlInput3 = document.getElementById('exampleFormControlInput3');
+  
+  if(txtMultiTCGen.style.display == "none"){
+    // if(data.get('prompt') == ""){
+    //   alert("Scenario needed to be defined");
+    // }
+    if(data.get('prompt2') !== "" && data.get('prompt3') !== ""){
+      qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2')+' Expected Result: '+data.get('prompt3');
+    }
 
-  if(data.get('prompt2') !== "" && data.get('prompt3') == ""){
-    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2');
-  }
+    if(data.get('prompt2') == "" && data.get('prompt3') == ""){
+      qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt');
+    }
 
-  if(data.get('prompt2') == "" && data.get('prompt3') !== ""){
-    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' Expected Result: '+data.get('prompt3');
+    if(data.get('prompt2') !== "" && data.get('prompt3') == ""){
+      qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2');
+    }
+
+    if(data.get('prompt2') == "" && data.get('prompt3') !== ""){
+      qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' Expected Result: '+data.get('prompt3');
+    }
+  } else if(txtMultiTCGen.style.display == "block") {
+    let q1 = data.get('multiPromt');
+    // qery = 'Write test cases for the following scenario with the test case name, preconditions in points, test steps, expected result in points and post-conditions in points' +
+    //         q1;
+
+    qery = 'Write multiple test cases on ' + q1;
+    // runService(qery);
   }
+    
+  
   //User's chat stripe
   chatContainer.innerHTML += chatStripe(false, qery);
 
@@ -123,7 +145,6 @@ const handleSubmit = async (e) => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      // prompt: data.get('prompt')
       prompt: qery
     })
   })
@@ -136,7 +157,31 @@ const handleSubmit = async (e) => {
     const parsedData =  data.bot.trim();
 
     //console.log({parsedData});
-    typeText(messageDiv, parsedData);
+    if(txtMultiTCGen.style.display == "none") {
+      typeText(messageDiv, parsedData);
+    }else{
+      loader(messageDiv);
+      const response = await fetch('http://10.82.82.17:5000/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+
+          prompt: 'Write test cases for the following scenario with the test case name,' +  
+          'add new line, then define preconditions in points,' + 
+          'add new line, then define test steps, ' + 
+          'add new line, then define expected results in points and ' + 
+          'add new line, then define post-conditions in points ' + parsedData
+        })
+      })
+      
+      clearInterval(loadInterval);
+      messageDiv.innerHTML = '';
+      const data =  await response.json();
+      const parsedData2 =  data.bot.trim();
+      typeText(messageDiv, parsedData2);
+    }
   }else{
     const err = await response.text();
     messageDiv.innerHTML = "Something went wrong";
