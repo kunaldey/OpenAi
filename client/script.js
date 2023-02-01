@@ -36,12 +36,31 @@ function typeText(element, text){
 }
 
 function generateUniqueId(){
-  const timestamp = Date.now();
-  const randomNumber = Math.random();
+  // const timestamp = Date.now();
+  const randomNumber = Math.floor(Math.random() * 10000000000000000000);
   const hexString = randomNumber.toString(16); 
 
-  return `id-${timestamp}-${hexString}`;
+  // return `id-${timestamp}-${hexString}`;
+  return `id-${randomNumber}`;
 }
+
+
+function copyText(btnID) {
+  let htmlELement = document.querySelector('#'+btnID);
+  if (!htmlELement){
+    return;
+  }
+
+  let elementText = htmlELement.innerText;
+
+  let inputElement = document.createElement('input');
+  inputElement.setAttribute('value', elementText);
+  document.body.appendChild(inputElement);
+  inputElement.select();
+  document.execCommand('copy');
+  inputElement.parentNode.removeChild(inputElement);
+}
+
 
 function chatStripe (isAi, value, uniqueId){
   return(
@@ -55,7 +74,7 @@ function chatStripe (isAi, value, uniqueId){
           />
         </div>
         <div class="message" id=${uniqueId}>${value}</div>
-        <button type="button" onclick="${CopyToClipboard(value)}"><img src="assets/copy.png"/></button>
+        
       </div>
     </div>
     `
@@ -66,9 +85,22 @@ const handleSubmit = async (e) => {
   e.preventDefault();
 
   const data = new FormData(form);
+  let qery = "";
+  if(data.get('prompt2') !== "" && data.get('prompt3') !== ""){
+    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2')+' Expected Result: '+data.get('prompt3');
+  }
 
-  const qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2')+' Expected Result: '+data.get('prompt3');
+  if(data.get('prompt2') == "" && data.get('prompt3') == ""){
+    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt');
+  }
 
+  if(data.get('prompt2') !== "" && data.get('prompt3') == ""){
+    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' With the fields '+data.get('prompt2');
+  }
+
+  if(data.get('prompt2') == "" && data.get('prompt3') !== ""){
+    qery = 'Write a test case with the test case name, preconditions, steps, and expected result to ' + data.get('prompt')+' Expected Result: '+data.get('prompt3');
+  }
   //User's chat stripe
   chatContainer.innerHTML += chatStripe(false, qery);
 
@@ -187,7 +219,4 @@ function Time() {
   
   Time();
 
-  function CopyToClipboard(value) {
-    navigator.clipboard.writeText(value);
-    // alert("Copied: " + value);
-  }
+  
