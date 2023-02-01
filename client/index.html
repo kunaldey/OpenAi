@@ -55,7 +55,7 @@
         <div class="footer">
           <p>
             <div>
-              <button onClick="window.location.href=window.location.href"><img src="assets/delete.png"/></button>
+              <button onClick="checker()"><img src="assets/delete.png"/></button>
               <button type="button" onclick="smoothScroll(document.getElementById('chat_container'))"><img src="assets/up-arrow.png"/></button> 
               <button type="button" onclick="smoothScroll(document.getElementById('itemFooter'))"><img src="assets/down-arrow.png"/></button>
             </div>
@@ -96,6 +96,14 @@
           }
           // start scrolling
           scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+        }
+      </script>
+      <script>
+        function checker(){
+          var result = confirm('Are you sure you want to clear chat history?');
+          if (result == true){
+            window.location.href=window.location.href;
+          }
         }
       </script>
   </body>
